@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css">
+        <link rel="stylesheet" href="css/leaflet-search.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-search.js"></script>
+        <script src="data/INDONESIA_KEC_0.js"></script>
+        <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+
+            if (e.target.feature.geometry.type === 'LineString') {
+              highlightLayer.setStyle({
+                color: '#ffff00',
+              });
+            } else {
+              highlightLayer.setStyle({
+                fillColor: '#ffff00',
+                fillOpacity: 1
+              });
+            }
+            highlightLayer.openPopup();
+        }
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-7.28931796895,109.068801694],[-6.80139976895,109.709087332]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
+        var bounds_group = new L.featureGroup([]);
+        var basemap0 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+            maxZoom: 28
+        });
+        basemap0.addTo(map);
+        function setBounds() {
+        }
+        function pop_INDONESIA_KEC_0(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">ID</th>\
+                        <td>' + (feature.properties['ID'] !== null ? Autolinker.link(String(feature.properties['ID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Kecamatan</th>\
+                        <td>' + (feature.properties['Kecamatan'] !== null ? Autolinker.link(String(feature.properties['Kecamatan'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Luas Panen</th>\
+                        <td>' + (feature.properties['Luas Panen'] !== null ? Autolinker.link(String(feature.properties['Luas Panen'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Produksi</th>\
+                        <td>' + (feature.properties['Produksi'] !== null ? Autolinker.link(String(feature.properties['Produksi'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_INDONESIA_KEC_0_0(feature) {
+            switch(String(feature.properties['Kecamatan'])) {
+                case 'Ampel Gading':
+                    return {
+                pane: 'pane_INDONESIA_KEC_0',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(126,214,157,1.0)',
+            }
+                    break;
+                case 'Bantar Bolang':
+                    return {
+                pane: 'pane_INDONESIA_KEC_0',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(174,115,233,1.0)',
+            }
+                    break;
+                case 'Belik':
+                    return {
+                pane: 'pane_INDONESIA_KEC_0',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(115,238,104,1.0)',
+            }
+                    break;
+                case 'Bodeh':
+                    return {
+                pane: 'pane_INDONESIA_KEC_0',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(205,211,109,1.0)',
+            }
+                    break;
+                case 'Comal':
+                    return {
+                pane: 'pane_INDONESIA_KEC_0',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(232,155,134,1.0)',
+            }
+                    break;
+                case 'Moga':
+                    return {
+                pane: 'pane_INDONESIA_KEC_0',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(131,169,240,1.0)',
+            }
+                    break;
+                case 'Pemalang':
+                    return {
+                pane: 'pane_INDONESIA_KEC_0',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(70,224,188,1.0)',
+            }
+                    break;
+                case 'Petarukan':
+                    return {
+                pane: 'pane_INDONESIA_KEC_0',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(152,200,103,1.0)',
+            }
+                    break;
+                case 'Pulosari':
+                    return {
+                pane: 'pane_INDONESIA_KEC_0',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(226,186,117,1.0)',
+            }
+                    break;
+                case 'Randu Dongkal':
+                    return {
+                pane: 'pane_INDONESIA_KEC_0',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(240,103,133,1.0)',
+            }
+                    break;
+                case 'Taman':
+                    return {
+                pane: 'pane_INDONESIA_KEC_0',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(219,98,177,1.0)',
+            }
+                    break;
+                case 'Ulujami':
+                    return {
+                pane: 'pane_INDONESIA_KEC_0',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(86,76,217,1.0)',
+            }
+                    break;
+                case 'Watu Kumpul':
+                    return {
+                pane: 'pane_INDONESIA_KEC_0',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(58,180,210,1.0)',
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_INDONESIA_KEC_0',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(203,117,209,1.0)',
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_INDONESIA_KEC_0');
+        map.getPane('pane_INDONESIA_KEC_0').style.zIndex = 400;
+        map.getPane('pane_INDONESIA_KEC_0').style['mix-blend-mode'] = 'normal';
+        var layer_INDONESIA_KEC_0 = new L.geoJson(json_INDONESIA_KEC_0, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_INDONESIA_KEC_0',
+            onEachFeature: pop_INDONESIA_KEC_0,
+            style: style_INDONESIA_KEC_0_0,
+        });
+        bounds_group.addLayer(layer_INDONESIA_KEC_0);
+        map.addLayer(layer_INDONESIA_KEC_0);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'INDONESIA_KEC<br /><table><tr><td style="text-align: center;"><img src="legend/INDONESIA_KEC_0_AmpelGading0.png" /></td><td>Ampel Gading</td></tr><tr><td style="text-align: center;"><img src="legend/INDONESIA_KEC_0_BantarBolang1.png" /></td><td>Bantar Bolang</td></tr><tr><td style="text-align: center;"><img src="legend/INDONESIA_KEC_0_Belik2.png" /></td><td>Belik</td></tr><tr><td style="text-align: center;"><img src="legend/INDONESIA_KEC_0_Bodeh3.png" /></td><td>Bodeh</td></tr><tr><td style="text-align: center;"><img src="legend/INDONESIA_KEC_0_Comal4.png" /></td><td>Comal</td></tr><tr><td style="text-align: center;"><img src="legend/INDONESIA_KEC_0_Moga5.png" /></td><td>Moga</td></tr><tr><td style="text-align: center;"><img src="legend/INDONESIA_KEC_0_Pemalang6.png" /></td><td>Pemalang</td></tr><tr><td style="text-align: center;"><img src="legend/INDONESIA_KEC_0_Petarukan7.png" /></td><td>Petarukan</td></tr><tr><td style="text-align: center;"><img src="legend/INDONESIA_KEC_0_Pulosari8.png" /></td><td>Pulosari</td></tr><tr><td style="text-align: center;"><img src="legend/INDONESIA_KEC_0_RanduDongkal9.png" /></td><td>Randu Dongkal</td></tr><tr><td style="text-align: center;"><img src="legend/INDONESIA_KEC_0_Taman10.png" /></td><td>Taman</td></tr><tr><td style="text-align: center;"><img src="legend/INDONESIA_KEC_0_Ulujami11.png" /></td><td>Ulujami</td></tr><tr><td style="text-align: center;"><img src="legend/INDONESIA_KEC_0_WatuKumpul12.png" /></td><td>Watu Kumpul</td></tr><tr><td style="text-align: center;"><img src="legend/INDONESIA_KEC_0_13.png" /></td><td></td></tr></table>': layer_INDONESIA_KEC_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        var i = 0;
+        layer_INDONESIA_KEC_0.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Kecamatan'] !== null?String('<div style="color: #000000; font-size: 8pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['Kecamatan']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_INDONESIA_KEC_0'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        map.addControl(new L.Control.Search({
+            layer: layer_INDONESIA_KEC_0,
+            initial: false,
+            hideMarkerOnCollapse: true,
+            propertyName: 'Kecamatan'}));
+        resetLabels([layer_INDONESIAKEC_0]);
+        map.on("zoomend", function(){
+            resetLabels([layer_INDONESIAKEC_0]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_INDONESIAKEC_0]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_INDONESIAKEC_0]);
+        });
+        </script>
+    </body>
+</html>
